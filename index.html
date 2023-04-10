@@ -3,50 +3,16 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
   <title>Ordenação de resultado do Cespe</title>
-  <style>
-    /* Set the font size of the body */
-    body {
-      font-size: 16px;
-    }
-
-    /* Adjust the layout for smaller screens */
-    @media (max-width: 768px) {
-
-      /* Make the textarea and input fields full width */
-      #input,
-      #output,
-      #somadores,
-      #ordenador,
-      #ordenador2,
-      #csv {
-        width: 100%;
-      }
-
-      /* Reduce the font size of the form labels */
-      form label {
-        font-size: 14px;
-      }
-
-      /* Adjust the width of the form elements */
-      form input[type="text"],
-      form select {
-        width: 60%;
-      }
-    }
-  </style>
 </head>
 
 <body>
   <h1>Ordenação de resultado do Cespe</h1>
   <p>Exemplo de entrada:</p>
-  <p>10009632, Fulano de Tal, 53.50, 13.33 / 10009533, José das Medalhas, 50.28, 13.2 / 10009532, Maria da Silva, 48.5,
-    12.23 / 10009420, Quentin Tarantino, 33.12, 13.9 / 10009620, Walter Cunha, 32.00, 11.11 / 10009430, Bob Maconel,
-    60.00, 13.27 / 10009618, Fernando Pedrosa, 60.90, 12.6 / 10009633, Kim Jong-un, 99.97, 15 / 10009534, Vladimir
-    Putin,
-    61.18, 11.8 / 10009705, William Jefferson Clinton, 61.18, 11.99</p>
-  <textarea id="input" rows="14" cols="80"></textarea>
+  <p class="sample-data"></p>
+  <button id="sample-button" type="submit">Ver exemplo</button>
+  <textarea id="input" class="input-data" rows="14" cols="80"></textarea>
   <form id="vai">
     <div>
       <label for="somadores">Criar campo extra somando os campos</label>
@@ -65,10 +31,29 @@
     </div>
   </form>
   <textarea id="output" rows="14" cols="80">(saída...)</textarea>
-  <p><i>O código fonte deste script é livre:
-      <a target="_blank"
-        href="https://github.com/rodrigocfd/ordenador-cespe">github.com/rodrigocfd/ordenador-cespe</a></i></p>
   <script src="script.js"></script>
+  <script>
+    let show = false;
+
+    function showExampleData() {
+      const sampleData = document.querySelector(".sample-data");
+      const example =
+        "10009632, Fulano de Tal, 53.50, 13.33 / 10009533, José das Medalhas, 50.28, 13.2 / 10009532, Maria da Silva, 48.5, 12.23 / 10009420, Quentin Tarantino, 33.12, 13.9 / 10009620, Walter Cunha, 32.00, 11.11 / 10009430, Bob Maconel, 60.00, 13.27 / 10009618, Fernando Pedrosa, 60.90, 12.6 / 10009633, Kim Jong-un, 99.97, 15 / 10009534, Vladimir Putin, 61.18, 11.8 / 10009705, William Jefferson Clinton, 61.18, 11.99";
+      if (show) {
+        sampleData.innerHTML = "";
+      } else {
+        sampleData.innerHTML = example;
+      }
+
+      show = !show;
+    }
+
+    const sampleButton = document.getElementById("sample-button");
+
+    if (sampleButton) {
+      sampleButton.addEventListener("click", showExampleData);
+    }
+  </script>
 </body>
 
 </html>
